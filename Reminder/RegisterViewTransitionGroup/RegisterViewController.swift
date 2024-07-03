@@ -19,6 +19,8 @@ class RegisterViewController: UIViewController {
     
     let realm = try! Realm()
     
+    var dueDate = Date()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarchy()
@@ -26,7 +28,7 @@ class RegisterViewController: UIViewController {
         configureUI()
         print(realm.configuration.fileURL)
     }
-  
+    
     func configureHierarchy() {
         view.addSubview(uiView)
         view.addSubview(separator)
@@ -105,7 +107,7 @@ class RegisterViewController: UIViewController {
             return
         }
         //2.
-        let data = Todo(title: title, content: content, date: Date())
+        let data = Todo(title: title, content: content, date: dueDate)
         //3.
         try! realm.write {
             realm.add(data)
@@ -115,6 +117,21 @@ class RegisterViewController: UIViewController {
     }
 }
 extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0: let vc = DateViewController()
+            dueDate = vc.datePicker.date
+            navigationController?.pushViewController(vc, animated: true)
+        case 1: let vc = TagViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 2: let vc = PriorityViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 3: let vc = PHPickerViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        default:
+            print("error")
+        }
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         4
     }
@@ -125,12 +142,12 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: RegisterTableViewCell.id, for: indexPath) as! RegisterTableViewCell
         cell.backgroundColor = .clear
         switch indexPath.row {
-        case 0: cell.textfield.attributedPlaceholder = NSAttributedString(string: "마감일", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
-        case 1: cell.textfield.attributedPlaceholder = NSAttributedString(string: "태그", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
-        case 2: cell.textfield.attributedPlaceholder = NSAttributedString(string: "우선 순위", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
-        case 3: cell.textfield.attributedPlaceholder = NSAttributedString(string: "이미지 추가", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        case 0: cell.uiLabel.text = String(dueDate.formatted())//"마감일"
+        case 1: cell.uiLabel.text = "태그"
+        case 2: cell.uiLabel.text = "우선순위"
+        case 3: cell.uiLabel.text = "이미지 추가"
         default:
-            cell.textfield.attributedPlaceholder = NSAttributedString(string: "아몰랑", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+            cell.uiLabel.text = "아몰랑"
         }
         
         return cell

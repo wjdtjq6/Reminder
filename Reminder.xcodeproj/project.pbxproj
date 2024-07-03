@@ -20,6 +20,10 @@
 		038EA1BB2C341D8F00CBDB48 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EA1BA2C341D8F00CBDB48 /* RealmModel.swift */; };
 		038EA1BD2C3429D000CBDB48 /* RegisterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EA1BC2C3429D000CBDB48 /* RegisterTableViewCell.swift */; };
 		038EA1C02C34319B00CBDB48 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 038EA1BF2C34319B00CBDB48 /* Toast */; };
+		038EA1C62C353B4600CBDB48 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EA1C52C353B4600CBDB48 /* DateViewController.swift */; };
+		038EA1C82C353B5B00CBDB48 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EA1C72C353B5B00CBDB48 /* TagViewController.swift */; };
+		038EA1CA2C353B8500CBDB48 /* PriorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EA1C92C353B8500CBDB48 /* PriorityViewController.swift */; };
+		038EA1CC2C353B9500CBDB48 /* PHPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EA1CB2C353B9500CBDB48 /* PHPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +39,10 @@
 		038EA1B72C33FA3000CBDB48 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		038EA1BA2C341D8F00CBDB48 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		038EA1BC2C3429D000CBDB48 /* RegisterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTableViewCell.swift; sourceTree = "<group>"; };
+		038EA1C52C353B4600CBDB48 /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
+		038EA1C72C353B5B00CBDB48 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		038EA1C92C353B8500CBDB48 /* PriorityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityViewController.swift; sourceTree = "<group>"; };
+		038EA1CB2C353B9500CBDB48 /* PHPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +78,7 @@
 		038EA1982C33EA1F00CBDB48 /* Reminder */ = {
 			isa = PBXGroup;
 			children = (
+				038EA1C42C353B2800CBDB48 /* RegisterViewTransitionGroup */,
 				038EA1B92C341D8000CBDB48 /* Database */,
 				038EA1992C33EA1F00CBDB48 /* AppDelegate.swift */,
 				038EA19B2C33EA1F00CBDB48 /* SceneDelegate.swift */,
@@ -77,10 +86,8 @@
 				038EA1A22C33EA2100CBDB48 /* Assets.xcassets */,
 				038EA1A42C33EA2100CBDB48 /* LaunchScreen.storyboard */,
 				038EA1A72C33EA2100CBDB48 /* Info.plist */,
-				038EA1AD2C33F56000CBDB48 /* RegisterViewController.swift */,
 				038EA1AF2C33F57300CBDB48 /* ListViewController.swift */,
 				038EA1B72C33FA3000CBDB48 /* ListTableViewCell.swift */,
-				038EA1BC2C3429D000CBDB48 /* RegisterTableViewCell.swift */,
 			);
 			path = Reminder;
 			sourceTree = "<group>";
@@ -91,6 +98,19 @@
 				038EA1BA2C341D8F00CBDB48 /* RealmModel.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		038EA1C42C353B2800CBDB48 /* RegisterViewTransitionGroup */ = {
+			isa = PBXGroup;
+			children = (
+				038EA1AD2C33F56000CBDB48 /* RegisterViewController.swift */,
+				038EA1BC2C3429D000CBDB48 /* RegisterTableViewCell.swift */,
+				038EA1C52C353B4600CBDB48 /* DateViewController.swift */,
+				038EA1C72C353B5B00CBDB48 /* TagViewController.swift */,
+				038EA1C92C353B8500CBDB48 /* PriorityViewController.swift */,
+				038EA1CB2C353B9500CBDB48 /* PHPickerViewController.swift */,
+			);
+			path = RegisterViewTransitionGroup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,6 +193,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				038EA1CA2C353B8500CBDB48 /* PriorityViewController.swift in Sources */,
 				038EA19E2C33EA1F00CBDB48 /* ViewController.swift in Sources */,
 				038EA1BB2C341D8F00CBDB48 /* RealmModel.swift in Sources */,
 				038EA19A2C33EA1F00CBDB48 /* AppDelegate.swift in Sources */,
@@ -180,6 +201,9 @@
 				038EA1B02C33F57300CBDB48 /* ListViewController.swift in Sources */,
 				038EA1AE2C33F56000CBDB48 /* RegisterViewController.swift in Sources */,
 				038EA1BD2C3429D000CBDB48 /* RegisterTableViewCell.swift in Sources */,
+				038EA1CC2C353B9500CBDB48 /* PHPickerViewController.swift in Sources */,
+				038EA1C82C353B5B00CBDB48 /* TagViewController.swift in Sources */,
+				038EA1C62C353B4600CBDB48 /* DateViewController.swift in Sources */,
 				038EA1B82C33FA3000CBDB48 /* ListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
