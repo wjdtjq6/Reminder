@@ -19,8 +19,9 @@ class RegisterViewController: UIViewController {
     
     let realm = try! Realm()
     
-    var dueDate = Date()
-
+    var getDate = ""
+    var getTagText = ""
+    var getSegment = 611
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarchy()
@@ -28,7 +29,9 @@ class RegisterViewController: UIViewController {
         configureUI()
         print(realm.configuration.fileURL)
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
     func configureHierarchy() {
         view.addSubview(uiView)
         view.addSubview(separator)
@@ -86,9 +89,11 @@ class RegisterViewController: UIViewController {
         separator.backgroundColor = .lightGray
         contentTextfield.backgroundColor = .clear
         contentTextfield.text = "메모"
+        contentTextfield.delegate = self
         contentTextfield.textAlignment = .left
         contentTextfield.textColor = .lightGray
         tableView.backgroundColor = .clear
+        
 
     }
     @objc func cancleBarButtonClicked() {
@@ -107,7 +112,7 @@ class RegisterViewController: UIViewController {
             return
         }
         //2.
-        let data = Todo(title: title, content: content, date: dueDate)
+        let data = Todo(title: title, content: content, date: getDate, tag: getTagText, priority: getSegment)
         //3.
         try! realm.write {
             realm.add(data)
@@ -116,15 +121,28 @@ class RegisterViewController: UIViewController {
         dismiss(animated: true)
     }
 }
+extension RegisterViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        contentTextfield.text = ""
+    }
+}
 extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0: let vc = DateViewController()
-            dueDate = vc.datePicker.date
+            vc.setedDate = { value in
+                self.getDate = value
+            }
             navigationController?.pushViewController(vc, animated: true)
         case 1: let vc = TagViewController()
+            vc.tagText = { value in
+                self.getTagText = value
+            }
             navigationController?.pushViewController(vc, animated: true)
         case 2: let vc = PriorityViewController()
+            vc.segmentInt = { value in
+                self.getSegment = value
+            }
             navigationController?.pushViewController(vc, animated: true)
         case 3: let vc = PHPickerViewController()
             navigationController?.pushViewController(vc, animated: true)
@@ -142,14 +160,27 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: RegisterTableViewCell.id, for: indexPath) as! RegisterTableViewCell
         cell.backgroundColor = .clear
         switch indexPath.row {
-        case 0: cell.uiLabel.text = String(dueDate.formatted())//"마감일"
+        case 0: cell.uiLabel.text = "마감일"
+            cell.rightLabel.text = getDate
         case 1: cell.uiLabel.text = "태그"
-        case 2: cell.uiLabel.text = "우선순위"
-        case 3: cell.uiLabel.text = "이미지 추가"
+            cell.rightLabel.text = getTagText
+        case 2: cell.uiLabel.text = "우선 순위"
+            var getSegmentString = ""
+            if getSegment == 0 {
+            getSegmentString = "높음" }
+            else if getSegment == 1 {
+                getSegmentString = "보통" }
+            else if getSegment == 2 {
+                getSegmentString = "낮음" }
+            else {
+                getSegmentString = ""
+            }
+            cell.rightLabel.text = "\(getSegmentString)"
+        case 3: cell.rightLabel.text = ""
+            cell.uiLabel.text = "이미지 추가"
         default:
             cell.uiLabel.text = "아몰랑"
         }
-        
         return cell
     }
     

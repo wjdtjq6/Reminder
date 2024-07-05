@@ -24,7 +24,22 @@
 		038EA1C82C353B5B00CBDB48 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EA1C72C353B5B00CBDB48 /* TagViewController.swift */; };
 		038EA1CA2C353B8500CBDB48 /* PriorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EA1C92C353B8500CBDB48 /* PriorityViewController.swift */; };
 		038EA1CC2C353B9500CBDB48 /* PHPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EA1CB2C353B9500CBDB48 /* PHPickerViewController.swift */; };
+		03D110A62C36903E00481E36 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 038EA1B52C33F9CB00CBDB48 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		03D110A72C36903E00481E36 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				03D110A62C36903E00481E36 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		038EA1962C33EA1F00CBDB48 /* Reminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +138,7 @@
 				038EA1922C33EA1F00CBDB48 /* Sources */,
 				038EA1932C33EA1F00CBDB48 /* Frameworks */,
 				038EA1942C33EA1F00CBDB48 /* Resources */,
+				03D110A72C36903E00481E36 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -353,7 +369,9 @@
 				INFOPLIST_FILE = Reminder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -384,7 +402,9 @@
 				INFOPLIST_FILE = Reminder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

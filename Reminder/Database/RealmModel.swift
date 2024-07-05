@@ -12,12 +12,17 @@ class Todo: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var title: String
     @Persisted var content: String?
-    @Persisted var date: Date?
+    @Persisted var date: String?
+    @Persisted var tag: String?
+    @Persisted var priority: Int?
+    @Persisted var folder: String//왜 초기화를 안해도되는가? //다른애들은 왜 초기화하나?pk때문에?
     
-    convenience init(title: String, content: String?, date: Date? ) {
+    convenience init(title: String, content: String?, date: String?, tag: String?, priority: Int? ) {
         self.init()
         self.title = title
         self.content = content
         self.date = date
+        self.tag = tag
+        self.priority = priority
     }
 }

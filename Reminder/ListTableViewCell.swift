@@ -13,6 +13,7 @@ class ListTableViewCell: UITableViewCell {
     let contentLabel = UILabel()
     let dateLabel = UILabel()
     let hashtagLabel = UILabel()
+    let priorityLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -29,10 +30,16 @@ class ListTableViewCell: UITableViewCell {
         contentView.addSubview(contentLabel)
         contentView.addSubview(dateLabel)
         contentView.addSubview(hashtagLabel)
+        contentView.addSubview(priorityLabel)
     }
     func configureLayout() {
-        titleLabel.snp.makeConstraints { make in
+        priorityLabel.snp.makeConstraints { make in
             make.top.leading.equalTo(contentView.safeAreaLayoutGuide).offset(5)
+
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(5)
+            make.leading.equalTo(priorityLabel.snp.trailing).offset(3)
         }
         contentLabel.snp.makeConstraints { make in
             make.top.lessThanOrEqualTo(titleLabel.snp.bottom).offset(5)
@@ -45,13 +52,12 @@ class ListTableViewCell: UITableViewCell {
         hashtagLabel.snp.makeConstraints { make in
             make.top.lessThanOrEqualTo(contentLabel.snp.bottom).offset(5)
             make.leading.lessThanOrEqualTo(dateLabel.snp.trailing).offset(5)
-//            make.centerY.equalTo(contentView.safeAreaLayoutGuide)
-//            make.width.equalTo(40)
-//            make.height.equalTo(10)
+
         }
         
     }
     func configureUI() {
+        priorityLabel.textColor = .systemBlue
         titleLabel.textColor = .white
         contentLabel.textColor = .lightGray
         contentLabel.font = .systemFont(ofSize: 12)

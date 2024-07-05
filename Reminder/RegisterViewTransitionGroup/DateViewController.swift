@@ -11,9 +11,9 @@ class DateViewController: UIViewController {
     let datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .date
-        picker.preferredDatePickerStyle = .wheels
+        picker.preferredDatePickerStyle = .inline
         picker.locale = Locale(identifier: "ko-KR")
-        picker.maximumDate = Date()
+        //picker.maximumDate = Date()
         return picker
     }()
     let containerStackView: UIStackView = {
@@ -23,9 +23,12 @@ class DateViewController: UIViewController {
         stack.spacing = 10
         return stack
     }()
+    var setedDate: ((String) -> Void)?
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print(datePicker.date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        setedDate?(dateFormatter.string(from: datePicker.date))
     }
     override func viewDidLoad() {
         super.viewDidLoad()

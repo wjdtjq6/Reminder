@@ -19,6 +19,8 @@ class ListViewController: UIViewController {
         configureLayout()
         configureUI()
         list = realm.objects(Todo.self)
+//        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationItem.title = "이렇게하면 title을 아래에 쓸 수 있다"
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -84,9 +86,16 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         let data = list[indexPath.row]
         cell.titleLabel.text = data.title//"키보드 구매"
         cell.contentLabel.text = data.content//"예쁜 키캡 알아보기"
-        cell.dateLabel.text = "\(data.date)"//"\(Date.now)"//String(Date.now)
-        cell.hashtagLabel.text = "#쇼핑"
-
+        cell.dateLabel.text = data.date
+        cell.hashtagLabel.text = "#"+data.tag!//"#쇼핑"
+        var highTorow = ""
+        switch data.priority {
+            case 0: highTorow = "!!!"
+            case 1: highTorow = "!!"
+            case 2: highTorow = "!"
+            default: highTorow = ""
+        }
+        cell.priorityLabel.text = highTorow
         return cell
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

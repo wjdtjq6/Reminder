@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        let vc = ListViewController()
+        let vc = ListViewController()//ViewController()
         let nav = UINavigationController(rootViewController: vc)
         window?.rootViewController = nav // sb에서 entrypoint처럼 동작
         window?.makeKeyAndVisible()  // show
