@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         configureHierarchy()
         configureLayout()
         configureUI()
-        print(list)
+        list = realm.objects(Todo.self)
     }
     func configureHierarchy() {
         view.addSubview(leftTabButton)
