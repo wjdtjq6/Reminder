@@ -23,8 +23,10 @@
 		038EA1C62C353B4600CBDB48 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EA1C52C353B4600CBDB48 /* DateViewController.swift */; };
 		038EA1C82C353B5B00CBDB48 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EA1C72C353B5B00CBDB48 /* TagViewController.swift */; };
 		038EA1CA2C353B8500CBDB48 /* PriorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EA1C92C353B8500CBDB48 /* PriorityViewController.swift */; };
-		038EA1CC2C353B9500CBDB48 /* PHPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038EA1CB2C353B9500CBDB48 /* PHPickerViewController.swift */; };
 		03D110A62C36903E00481E36 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 038EA1B52C33F9CB00CBDB48 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		03D110A92C39160200481E36 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D110A82C39160200481E36 /* FileManager+Extension.swift */; };
+		03D110AB2C397B5D00481E36 /* AddListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D110AA2C397B5D00481E36 /* AddListViewController.swift */; };
+		03D110AD2C3981D700481E36 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D110AC2C3981D700481E36 /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,7 +59,9 @@
 		038EA1C52C353B4600CBDB48 /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
 		038EA1C72C353B5B00CBDB48 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		038EA1C92C353B8500CBDB48 /* PriorityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityViewController.swift; sourceTree = "<group>"; };
-		038EA1CB2C353B9500CBDB48 /* PHPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPickerViewController.swift; sourceTree = "<group>"; };
+		03D110A82C39160200481E36 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
+		03D110AA2C397B5D00481E36 /* AddListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListViewController.swift; sourceTree = "<group>"; };
+		03D110AC2C3981D700481E36 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,9 @@
 				038EA1A72C33EA2100CBDB48 /* Info.plist */,
 				038EA1AF2C33F57300CBDB48 /* ListViewController.swift */,
 				038EA1B72C33FA3000CBDB48 /* ListTableViewCell.swift */,
+				03D110A82C39160200481E36 /* FileManager+Extension.swift */,
+				03D110AA2C397B5D00481E36 /* AddListViewController.swift */,
+				03D110AC2C3981D700481E36 /* CollectionViewCell.swift */,
 			);
 			path = Reminder;
 			sourceTree = "<group>";
@@ -123,7 +130,6 @@
 				038EA1C52C353B4600CBDB48 /* DateViewController.swift */,
 				038EA1C72C353B5B00CBDB48 /* TagViewController.swift */,
 				038EA1C92C353B8500CBDB48 /* PriorityViewController.swift */,
-				038EA1CB2C353B9500CBDB48 /* PHPickerViewController.swift */,
 			);
 			path = RegisterViewTransitionGroup;
 			sourceTree = "<group>";
@@ -209,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03D110AB2C397B5D00481E36 /* AddListViewController.swift in Sources */,
 				038EA1CA2C353B8500CBDB48 /* PriorityViewController.swift in Sources */,
 				038EA19E2C33EA1F00CBDB48 /* ViewController.swift in Sources */,
 				038EA1BB2C341D8F00CBDB48 /* RealmModel.swift in Sources */,
@@ -217,8 +224,9 @@
 				038EA1B02C33F57300CBDB48 /* ListViewController.swift in Sources */,
 				038EA1AE2C33F56000CBDB48 /* RegisterViewController.swift in Sources */,
 				038EA1BD2C3429D000CBDB48 /* RegisterTableViewCell.swift in Sources */,
-				038EA1CC2C353B9500CBDB48 /* PHPickerViewController.swift in Sources */,
 				038EA1C82C353B5B00CBDB48 /* TagViewController.swift in Sources */,
+				03D110AD2C3981D700481E36 /* CollectionViewCell.swift in Sources */,
+				03D110A92C39160200481E36 /* FileManager+Extension.swift in Sources */,
 				038EA1C62C353B4600CBDB48 /* DateViewController.swift in Sources */,
 				038EA1B82C33FA3000CBDB48 /* ListTableViewCell.swift in Sources */,
 			);
@@ -372,7 +380,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -405,7 +413,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

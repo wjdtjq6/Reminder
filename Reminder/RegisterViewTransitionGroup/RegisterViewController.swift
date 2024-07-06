@@ -9,19 +9,19 @@ import UIKit
 import SnapKit
 import RealmSwift
 import Toast
-
+import PhotosUI
 class RegisterViewController: UIViewController {
     let uiView = UIView()
     let titleTextfield = UITextField()
     let separator = UIView()
     let contentTextfield = UITextView()
     let tableView = UITableView()
-    
     let realm = try! Realm()
     
     var getDate = ""
     var getTagText = ""
     var getSegment = 611
+    var photoImage = UIImage()
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarchy()
@@ -70,7 +70,6 @@ class RegisterViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.bottom.equalTo(view)
         }
-        
     }
     func configureUI() {
         view.backgroundColor = .black
@@ -93,8 +92,6 @@ class RegisterViewController: UIViewController {
         contentTextfield.textAlignment = .left
         contentTextfield.textColor = .lightGray
         tableView.backgroundColor = .clear
-        
-
     }
     @objc func cancleBarButtonClicked() {
         dismiss(animated: true)
@@ -112,11 +109,30 @@ class RegisterViewController: UIViewController {
             return
         }
         //2.
-        let data = Todo(title: title, content: content, date: getDate, tag: getTagText, priority: getSegment)
+        let data = Todo(title: title, content: content, date: getDate, tag: getTagText, priority: getSegment, isComplete: false)
         //3.
         try! realm.write {
             realm.add(data)
             print("Realm Creat Success")
+        }
+        //image save
+        //if let image = photoImage {
+            saveImageToDocument(image: photoImage, filename: "\(data.id)")
+        //}
+        dismiss(animated: true)
+    }
+}
+extension RegisterViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        results.first?.itemProvider
+        if let itemProvider = results.first?.itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self, completionHandler: { image, error in
+                print(Thread.isMainThread)
+                DispatchQueue.main.async {
+                    self.photoImage = (image as? UIImage)!
+                    self.tableView.reloadData()
+                }
+            })
         }
         dismiss(animated: true)
     }
@@ -144,8 +160,12 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
                 self.getSegment = value
             }
             navigationController?.pushViewController(vc, animated: true)
-        case 3: let vc = PHPickerViewController()
-            navigationController?.pushViewController(vc, animated: true)
+        case 3: var configuration = PHPickerConfiguration()
+            configuration.selectionLimit = 3
+            configuration.filter = .any(of: [.bursts, .screenshots, .images])
+            let picker = PHPickerViewController(configuration: configuration)
+            picker.delegate = self
+            present(picker, animated: true)
         default:
             print("error")
         }
@@ -162,6 +182,7 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0: cell.uiLabel.text = "마감일"
             cell.rightLabel.text = getDate
+            cell.photoImageView.image = nil
         case 1: cell.uiLabel.text = "태그"
             cell.rightLabel.text = getTagText
         case 2: cell.uiLabel.text = "우선 순위"
@@ -176,13 +197,15 @@ extension RegisterViewController: UITableViewDelegate, UITableViewDataSource {
                 getSegmentString = ""
             }
             cell.rightLabel.text = "\(getSegmentString)"
+            cell.photoImageView.image = nil
         case 3: cell.rightLabel.text = ""
+            cell.photoImageView.image = photoImage
+            print(photoImage)
             cell.uiLabel.text = "이미지 추가"
         default:
             cell.uiLabel.text = "아몰랑"
+            cell.photoImageView.image = nil
         }
         return cell
     }
-    
-    
 }

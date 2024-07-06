@@ -38,20 +38,20 @@ class ListViewController: UIViewController {
         }
     }
     func configureUI() {
-        let firstRightBarButton = UIBarButtonItem(image: UIImage(systemName: "plus.circle.fill"), style: .plain, target: self, action: #selector(firstBarButtonClicked))
+        //let firstRightBarButton = UIBarButtonItem(image: UIImage(systemName: "plus.circle.fill"), style: .plain, target: self, action: #selector(firstBarButtonClicked))
         let secondRightBarButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: #selector(SecondBarButtonClicked))
-        navigationItem.rightBarButtonItems = [secondRightBarButton, firstRightBarButton]
+        navigationItem.rightBarButtonItem = secondRightBarButton
         tableView.backgroundColor = .black
         tableView.rowHeight = 80
     }
-    @objc func firstBarButtonClicked() {
-        print(#function)
-        let vc = RegisterViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-
-        present(nav, animated: true)
-    }
+//    @objc func firstBarButtonClicked() {
+//        print(#function)
+//        let vc = RegisterViewController()
+//        let nav = UINavigationController(rootViewController: vc)
+//        nav.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+//
+//        present(nav, animated: true)
+//    }
     @objc func SecondBarButtonClicked() {
         print(#function)
     }
@@ -88,6 +88,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.contentLabel.text = data.content//"예쁜 키캡 알아보기"
         cell.dateLabel.text = data.date
         cell.hashtagLabel.text = "#"+data.tag!//"#쇼핑"
+        cell.uiImageView.image = loadImageToDocumnet(filename: "\(data.id)")
         var highTorow = ""
         switch data.priority {
             case 0: highTorow = "!!!"
@@ -96,7 +97,29 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             default: highTorow = ""
         }
         cell.priorityLabel.text = highTorow
+        cell.completeButton.tag = indexPath.row
+        cell.completeButton.addTarget(self, action: #selector(compleButtonClicked(sender:)), for: .touchUpInside)
+        if data.isComplete {
+            cell.completeButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+        } else {
+            cell.completeButton.setImage(UIImage(systemName: "circle"), for: .normal)
+        }
         return cell
+    }
+    @objc func compleButtonClicked(sender: UIButton) {
+        let data = list[sender.tag]
+        let realm = try! Realm()
+        let result = realm.objects(Todo.self)
+        if data.isComplete {
+            try! realm.write({
+                result[sender.tag].setValue(false, forKey: "isComplete")
+            })
+        } else {
+            try! realm.write({
+                result[sender.tag].setValue(true, forKey: "isComplete")
+            })
+        }
+        tableView.reloadData()
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in

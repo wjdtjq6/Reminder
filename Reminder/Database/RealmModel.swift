@@ -15,14 +15,15 @@ class Todo: Object {
     @Persisted var date: String?
     @Persisted var tag: String?
     @Persisted var priority: Int?
-    @Persisted var folder: String//왜 초기화를 안해도되는가? //다른애들은 왜 초기화하나?pk때문에?
+    @Persisted var isComplete: Bool
     
-    convenience init(title: String, content: String?, date: String?, tag: String?, priority: Int? ) {
+    convenience init(title: String, content: String?, date: String?, tag: String?, priority: Int? ,isComplete: Bool) {
         self.init()
         self.title = title
         self.content = content
         self.date = date
         self.tag = tag
         self.priority = priority
+        self.isComplete = false
     }
 }

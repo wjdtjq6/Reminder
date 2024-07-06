@@ -11,6 +11,7 @@ class RegisterTableViewCell: UITableViewCell {
     let uiLabel = UILabel()
     let rightImage = UIImageView()
     let rightLabel = UILabel()
+    let photoImageView = UIImageView()
     static let id = "RegisterTableViewCell"
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -20,6 +21,7 @@ class RegisterTableViewCell: UITableViewCell {
         contentView.addSubview(uiLabel)
         contentView.addSubview(rightImage)
         contentView.addSubview(rightLabel)
+        contentView.addSubview(photoImageView)
         uiLabel.snp.makeConstraints { make in
             make.centerY.equalTo(contentView)
             make.leading.equalTo(contentView).offset(10)
@@ -39,6 +41,11 @@ class RegisterTableViewCell: UITableViewCell {
         }
         rightLabel.textColor = .white
         rightLabel.font = .boldSystemFont(ofSize: 13)
+        photoImageView.snp.makeConstraints { make in
+            make.centerY.equalTo(contentView)
+            make.trailing.equalTo(rightImage.snp.leading)
+            make.width.height.equalTo(50)
+        }
     }
     
     required init?(coder: NSCoder) {
